@@ -16,6 +16,7 @@
   "homepage": "https://cider.sh/",
   "buildResources": "resources",
   "scripts": {
+    "postinstall": "node scripts/patch-airtunes.cjs",
     "bootstrap": "npx -y check-engine && pnpm i",
     "build": "tsc && lessc ./src/renderer/style.less ./src/renderer/style.css",
     "start": "npm run build && electron ./build/index.js",
@@ -69,6 +70,8 @@
     "youtube-search-without-api-key": "^2.0.1"
   },
   "devDependencies": {
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "@types/adm-zip": "^0.5.7",
     "@types/discord-rpc": "4.0.8",
     "@types/express": "^4.17.21",

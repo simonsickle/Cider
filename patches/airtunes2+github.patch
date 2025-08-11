@@ -1,0 +1,30 @@
+diff --git a/binding.gyp b/binding.gyp
+index 1234567..abcdefg 100644
+--- a/binding.gyp
++++ b/binding.gyp
+@@ -15,7 +15,7 @@
+                     'sources': [
+                     ],
+                     'xcode_settings': {
+-                        'CLANG_CXX_LANGUAGE_STANDARD': 'c++17'
++                        'CLANG_CXX_LANGUAGE_STANDARD': 'c++20'
+                     }
+                 }],
+                 ['OS=="linux"', {
+@@ -23,7 +23,7 @@
+                     ],
+                     'cflags_cc': [
+-                      "-std=c++17"
++                      "-std=c++20"
+                     ]
+                 }],
+                 ['OS=="win"', {
+@@ -29,7 +29,7 @@
+                     'include_dirs': ['C:\\Program Files\\OpenSSL-Win64\\include\\'],
+                     "msbuild_settings": {
+                           "ClCompile": {
+-                              "LanguageStandard": "stdcpp17"
++                              "LanguageStandard": "stdcpp20"
+                            }
+                     },
+                     'sources': [

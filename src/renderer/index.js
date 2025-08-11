@@ -90,20 +90,16 @@ function initMusicKit() {
 }
 
 function capiInit() {
-  const request = new XMLHttpRequest();
-  request.timeout = 5000;
-  request.addEventListener("load", initMusicKit);
-  request.onreadystatechange = function (aEvt) {
-    if (request.readyState == 4 && request.status != 200) {
-      if (localStorage.getItem("lastToken") != null) {
-        initMusicKit();
-      } else {
-        console.error(`Failed to load capi, cannot get token [${request.status}]`);
-      }
-    }
+  // Using hardcoded developer token as api.cider.sh is no longer available
+  const devToken = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IldlYlBsYXlLaWQifQ.eyJpc3MiOiJBTVBXZWJQbGF5IiwiaWF0IjoxNzUzOTk1Mzc3LCJleHAiOjE3NjEyNTI5NzcsInJvb3RfaHR0cHNfb3JpZ2luIjpbImFwcGxlLmNvbSJdfQ.4WfZhbfRot8QIz4UdNTpTLTfC2RiPa2XinofJy8r8F1FeY9OpRUjruh529aTD_E23fjviHlEome-dAPR8aTsMQ";
+  
+  // Simulate the successful response that would have come from the API
+  const fakeResponse = {
+    responseText: JSON.stringify({ token: devToken })
   };
-  request.open("GET", "https://api.cider.sh/v1/");
-  request.send();
+  
+  // Call initMusicKit with the fake response context
+  initMusicKit.call(fakeResponse);
 }
 
 document.addEventListener("musickitloaded", function () {

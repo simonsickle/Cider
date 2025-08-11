@@ -1,0 +1,58 @@
+diff --git a/node_modules/airtunes2/binding.gyp b/node_modules/airtunes2/binding.gyp
+index 1234567..abcdefg 100644
+--- a/node_modules/airtunes2/binding.gyp
++++ b/node_modules/airtunes2/binding.gyp
+@@ -15,7 +15,7 @@
+                     'sources': [
+                     ],
+                     'xcode_settings': {
+-                        'CLANG_CXX_LANGUAGE_STANDARD': 'c++17'
++                        'CLANG_CXX_LANGUAGE_STANDARD': 'c++20'
+                     }
+                 }],
+                 ['OS=="linux"', {
+@@ -23,7 +23,7 @@
+                     ],
+                     'cflags_cc': [
+-                      "-std=c++17"
++                      "-std=c++20"
+                     ]
+                 }],
+                 ['OS=="win"', {
+@@ -29,7 +29,7 @@
+                     'include_dirs': ['C:\\Program Files\\OpenSSL-Win64\\include\\'],
+                     "msbuild_settings": {
+                           "ClCompile": {
+-                              "LanguageStandard": "stdcpp17"
++                              "LanguageStandard": "stdcpp20"
+                            }
+                     },
+                     'sources': [
+diff --git a/node_modules/airtunes2/src/codec.cc b/node_modules/airtunes2/src/codec.cc
+index 1234567..abcdefg 100644
+--- a/node_modules/airtunes2/src/codec.cc
++++ b/node_modules/airtunes2/src/codec.cc
+@@ -37,11 +37,11 @@ void EncodeALAC(const FunctionCallbackInfo<Value>& args) {
+   // args[0]->ToObject(ctx).ToLocal(&wrapper);
+   // ALACEncoder *encoder = (ALACEncoder*)wrapper->GetAlignedPointerFromInternalField(0);
+ 
+-  Local<Value> pcmBuffer = args[1];
++  Local<Value> pcmBuffer = Local<Value>::Cast(args[1]);
+   Local<Object> pcmObj;
+   pcmBuffer->ToObject(ctx).ToLocal(&pcmObj);
+   unsigned char* pcmData = (unsigned char*)Buffer::Data(pcmObj);
+ 
+-  Local<Value> alacBuffer = args[2];
++  Local<Value> alacBuffer = Local<Value>::Cast(args[2]);
+   Local<Object> alacObj;
+   alacBuffer->ToObject(ctx).ToLocal(&alacObj);
+   unsigned char* alacData = (unsigned char*)Buffer::Data(alacObj);
+@@ -132,7 +132,7 @@ void EncryptAES(const FunctionCallbackInfo<Value>& args) {
+     args.GetReturnValue().Set(Null(isolate));
+   }
+ 
+-  Local<Value> alacBuffer = args[0];
++  Local<Value> alacBuffer = Local<Value>::Cast(args[0]);
+   Local<Object> alacObj;
+   alacBuffer->ToObject(ctx).ToLocal(&alacObj);
+   unsigned char* alacData = (unsigned char*)Buffer::Data(alacObj);
